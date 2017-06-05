@@ -11,7 +11,7 @@ mongo.connect(function (db) {
 });
 
 mongo.connect(function (db) {
-  mongo.updata(db, { 'name': '1区-sb兴' },{$set:{'sex':女}});
+  mongo.updata(db, { 'name': '1区-sb兴' },{$set:{'sex':'女'}});
 });
 
 // mongo.connect(function (db) {
