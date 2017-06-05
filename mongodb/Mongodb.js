@@ -7,12 +7,12 @@ function Mongodb(option) {
 
 Mongodb.prototype = {
   constructor: Mongodb,
-  _init: function (option) {
+  _init: (option) => {
     this.collection = option.collection;
     this.url = 'mongodb://localhost:27017/' + option.db + '';
   },
-  connect: function (callback) {
-    const self = this;
+  connect: (callback) => {
+    // const self = this;
     MongoClient.connect(this.url, function (err, db) {
       if (!err) {
         console.log('连接成功');
@@ -24,7 +24,7 @@ Mongodb.prototype = {
       }
     });
   },
-  insert: function (db, dataArr) {
+  insert: (db, dataArr) => {
     dataArr = dataArr || [];
     const table = db.collection(this.collection);
     table.insertMany(dataArr, function (err, result) {
@@ -36,7 +36,7 @@ Mongodb.prototype = {
       db.close();
     })
   },
-  updata: function (db, obj1, obj2) {
+  updata: (db, obj1, obj2) => {
     const table = db.collection(this.collection);
     table.updateMany(obj1, obj2, function (err, result) {
       if (!err) {
@@ -45,7 +45,7 @@ Mongodb.prototype = {
       db.close();
     })
   },
-  delete: function (db, obj) {
+  delete: (db, obj) => {
     obj = obj || {};
     const table = db.collection(this.collection);
     table.deleteMany(obj, function (err, result) {
@@ -55,7 +55,7 @@ Mongodb.prototype = {
       db.close();
     });
   },
-  find: function (db, callback, obj) {
+  find: (db, callback, obj) => {
     obj = obj || {};
     const table = db.collection(this.collection);
     table.find(obj).toArray(function (err, result) {
