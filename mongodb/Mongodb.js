@@ -13,7 +13,7 @@ Mongodb.prototype = {
   },
   connect: (callback) => {
     // const self = this;
-    MongoClient.connect(this.url, function (err, db) {
+    MongoClient.connect(this.url, (err, db) => {
       if (!err) {
         console.log('连接成功');
         if (callback) {
@@ -27,7 +27,7 @@ Mongodb.prototype = {
   insert: (db, dataArr) => {
     dataArr = dataArr || [];
     const table = db.collection(this.collection);
-    table.insertMany(dataArr, function (err, result) {
+    table.insertMany(dataArr, (err, result) => {
       if (!err) {
         console.log(result.result);
       } else {
@@ -38,7 +38,7 @@ Mongodb.prototype = {
   },
   updata: (db, obj1, obj2) => {
     const table = db.collection(this.collection);
-    table.updateMany(obj1, obj2, function (err, result) {
+    table.updateMany(obj1, obj2, (err, result) => {
       if (!err) {
         console.log(result.result);
       }
@@ -48,7 +48,7 @@ Mongodb.prototype = {
   delete: (db, obj) => {
     obj = obj || {};
     const table = db.collection(this.collection);
-    table.deleteMany(obj, function (err, result) {
+    table.deleteMany(obj, (err, result) => {
       if (!err) {
         console.log(result.result);
       }
@@ -58,7 +58,7 @@ Mongodb.prototype = {
   find: (db, callback, obj) => {
     obj = obj || {};
     const table = db.collection(this.collection);
-    table.find(obj).toArray(function (err, result) {
+    table.find(obj).toArray((err, result) => {
       if (!err) {
         if (callback) {
           callback(result);
